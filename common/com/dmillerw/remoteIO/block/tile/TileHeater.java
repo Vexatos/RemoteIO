@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityHeater extends TileEntityCore {
+public class TileHeater extends TileCore {
 
 	public boolean hasLava = false;
 	public boolean firstLoad = true;

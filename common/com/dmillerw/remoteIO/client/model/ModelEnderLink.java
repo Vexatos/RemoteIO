@@ -1,0 +1,212 @@
+package com.dmillerw.remoteIO.client.model;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+
+public class ModelEnderLink extends ModelTechne {
+	ModelRenderer connector4;
+	ModelRenderer plate2;
+	ModelRenderer plate1;
+	ModelRenderer connector3;
+	ModelRenderer connector1;
+	ModelRenderer connector2;
+	ModelRenderer glass;
+	ModelRenderer body;
+	ModelRenderer bodyRing3;
+	ModelRenderer bodyRing2;
+	ModelRenderer bodyRing1;
+	ModelRenderer transmitter;
+	ModelRenderer transmitterAnt;
+	ModelRenderer arm1;
+	ModelRenderer arm2;
+	ModelRenderer arm3;
+	ModelRenderer arm4;
+	ModelRenderer arm4angle;
+	ModelRenderer arm2angle;
+	ModelRenderer arm3angle;
+	ModelRenderer arm1angle;
+	ModelRenderer plate3;
+	ModelRenderer middle;
+
+	public ModelEnderLink() {
+		textureWidth = 64;
+		textureHeight = 32;
+
+		connector4 = new ModelRenderer(this, 6, 18);
+		connector4.addBox(0F, 0F, 0F, 1, 1, 1);
+		connector4.setRotationPoint(3F, 19F, 4F);
+		connector4.setTextureSize(64, 32);
+		connector4.mirror = true;
+		setRotation(connector4, 0F, 0F, 0F);
+		plate2 = new ModelRenderer(this, 0, 0);
+		plate2.addBox(0F, 0F, 0F, 8, 8, 1);
+		plate2.setRotationPoint(-4F, 12F, 5F);
+		plate2.setTextureSize(64, 32);
+		plate2.mirror = true;
+		setRotation(plate2, 0F, 0F, 0F);
+		plate1 = new ModelRenderer(this, 0, 0);
+		plate1.addBox(0F, 0F, 0F, 8, 8, 1);
+		plate1.setRotationPoint(-4F, 12F, 3F);
+		plate1.setTextureSize(64, 32);
+		plate1.mirror = true;
+		setRotation(plate1, 0F, 0F, 0F);
+		connector3 = new ModelRenderer(this, 6, 18);
+		connector3.addBox(0F, 0F, 0F, 1, 1, 1);
+		connector3.setRotationPoint(-4F, 19F, 4F);
+		connector3.setTextureSize(64, 32);
+		connector3.mirror = true;
+		setRotation(connector3, 0F, 0F, 0F);
+		connector1 = new ModelRenderer(this, 6, 18);
+		connector1.addBox(0F, 0F, 0F, 1, 1, 1);
+		connector1.setRotationPoint(-4F, 12F, 4F);
+		connector1.setTextureSize(64, 32);
+		connector1.mirror = true;
+		setRotation(connector1, 0F, 0F, 0F);
+		connector2 = new ModelRenderer(this, 6, 18);
+		connector2.addBox(0F, 0F, 0F, 1, 1, 1);
+		connector2.setRotationPoint(3F, 12F, 4F);
+		connector2.setTextureSize(64, 32);
+		connector2.mirror = true;
+		setRotation(connector2, 0F, 0F, 0F);
+		glass = new ModelRenderer(this, 18, 0);
+		glass.addBox(0F, 0F, 0F, 7, 7, 1);
+		glass.setRotationPoint(-3.5F, 12.5F, 4F);
+		glass.setTextureSize(64, 32);
+		glass.mirror = true;
+		setRotation(glass, 0F, 0F, 0F);
+		body = new ModelRenderer(this, 0, 9);
+		body.addBox(0F, 0F, 0F, 4, 4, 5);
+		body.setRotationPoint(-2F, 14F, -2F);
+		body.setTextureSize(64, 32);
+		body.mirror = true;
+		setRotation(body, 0F, 0F, 0F);
+		bodyRing3 = new ModelRenderer(this, 18, 16);
+		bodyRing3.addBox(0F, 0F, 0F, 5, 5, 1);
+		bodyRing3.setRotationPoint(-2.5F, 13.5F, 1.5F);
+		bodyRing3.setTextureSize(64, 32);
+		bodyRing3.mirror = true;
+		setRotation(bodyRing3, 0F, 0F, 0F);
+		bodyRing2 = new ModelRenderer(this, 18, 16);
+		bodyRing2.addBox(0F, 0F, 0F, 5, 5, 1);
+		bodyRing2.setRotationPoint(-2.5F, 13.5F, 0F);
+		bodyRing2.setTextureSize(64, 32);
+		bodyRing2.mirror = true;
+		setRotation(bodyRing2, 0F, 0F, 0F);
+		bodyRing1 = new ModelRenderer(this, 18, 16);
+		bodyRing1.addBox(0F, 0F, 0F, 5, 5, 1);
+		bodyRing1.setRotationPoint(-2.5F, 13.5F, -1.5F);
+		bodyRing1.setTextureSize(64, 32);
+		bodyRing1.mirror = true;
+		setRotation(bodyRing1, 0F, 0F, 0F);
+		transmitter = new ModelRenderer(this, 10, 18);
+		transmitter.addBox(-1F, -1F, 0F, 2, 2, 2);
+		transmitter.setRotationPoint(0F, 16F, -3F);
+		transmitter.setTextureSize(64, 32);
+		transmitter.mirror = true;
+		setRotation(transmitter, 0F, 0F, 0F);
+		transmitterAnt = new ModelRenderer(this, 0, 24);
+		transmitterAnt.addBox(-0.5F, -0.5F, -5F, 1, 1, 5);
+		transmitterAnt.setRotationPoint(0F, 16F, -2.5F);
+		transmitterAnt.setTextureSize(64, 32);
+		transmitterAnt.mirror = true;
+		setRotation(transmitterAnt, -0.8552113F, -0.6108652F, 0F);
+		arm1 = new ModelRenderer(this, 18, 22);
+		arm1.addBox(0F, 0F, 0F, 4, 1, 2);
+		arm1.setRotationPoint(-2F, 19F, 7F);
+		arm1.setTextureSize(64, 32);
+		arm1.mirror = true;
+		setRotation(arm1, 0F, 0F, 0F);
+		arm2 = new ModelRenderer(this, 0, 18);
+		arm2.addBox(0F, 0F, 0F, 1, 4, 2);
+		arm2.setRotationPoint(3F, 14F, 7F);
+		arm2.setTextureSize(64, 32);
+		arm2.mirror = true;
+		setRotation(arm2, 0F, 0F, 0F);
+		arm3 = new ModelRenderer(this, 18, 22);
+		arm3.addBox(0F, 0F, 0F, 4, 1, 2);
+		arm3.setRotationPoint(-2F, 12F, 7F);
+		arm3.setTextureSize(64, 32);
+		arm3.mirror = true;
+		setRotation(arm3, 0F, 0F, 0F);
+		arm4 = new ModelRenderer(this, 0, 18);
+		arm4.addBox(0F, 0F, 0F, 1, 4, 2);
+		arm4.setRotationPoint(-4F, 14F, 7F);
+		arm4.setTextureSize(64, 32);
+		arm4.mirror = true;
+		setRotation(arm4, 0F, 0F, 0F);
+		arm4angle = new ModelRenderer(this, 0, 18);
+		arm4angle.addBox(0F, 0F, -2F, 1, 4, 2);
+		arm4angle.setRotationPoint(-4F, 14F, 7F);
+		arm4angle.setTextureSize(64, 32);
+		arm4angle.mirror = true;
+		setRotation(arm4angle, 0F, -0.5235988F, 0F);
+		arm2angle = new ModelRenderer(this, 0, 18);
+		arm2angle.addBox(-1F, 0F, -2F, 1, 4, 2);
+		arm2angle.setRotationPoint(4F, 14F, 7F);
+		arm2angle.setTextureSize(64, 32);
+		arm2angle.mirror = true;
+		setRotation(arm2angle, 0F, 0.5235988F, 0F);
+		arm3angle = new ModelRenderer(this, 18, 22);
+		arm3angle.addBox(0F, 0F, -2F, 4, 1, 2);
+		arm3angle.setRotationPoint(-2F, 12F, 7F);
+		arm3angle.setTextureSize(64, 32);
+		arm3angle.mirror = true;
+		setRotation(arm3angle, 0.5235988F, 0F, 0F);
+		arm1angle = new ModelRenderer(this, 18, 22);
+		arm1angle.addBox(0F, -1F, -2F, 4, 1, 2);
+		arm1angle.setRotationPoint(-2F, 20F, 7F);
+		arm1angle.setTextureSize(64, 32);
+		arm1angle.mirror = true;
+		setRotation(arm1angle, -0.5235988F, 0F, 0F);
+		plate3 = new ModelRenderer(this, 18, 8);
+		plate3.addBox(0F, 0F, 0F, 7, 7, 1);
+		plate3.setRotationPoint(-3.5F, 12.5F, 5.5F);
+		plate3.setTextureSize(64, 32);
+		plate3.mirror = true;
+		setRotation(plate3, 0F, 0F, 0F);
+		middle = new ModelRenderer(this, 10, 18);
+		middle.addBox(-1F, -1F, 0F, 2, 2, 2);
+		middle.setRotationPoint(0F, 16F, 4F);
+		middle.setTextureSize(64, 32);
+		middle.mirror = true;
+		setRotation(middle, 0F, 0F, 0F);
+	}
+
+	@Override
+	public void render(float scale) {
+		connector4.render(scale);
+		plate2.render(scale);
+		plate1.render(scale);
+		connector3.render(scale);
+		connector1.render(scale);
+		connector2.render(scale);
+		body.render(scale);
+		bodyRing3.render(scale);
+		bodyRing2.render(scale);
+		bodyRing1.render(scale);
+		transmitter.render(scale);
+		transmitterAnt.render(scale);
+		arm1.render(scale);
+		arm2.render(scale);
+		arm3.render(scale);
+		arm4.render(scale);
+		arm4angle.render(scale);
+		arm2angle.render(scale);
+		arm3angle.render(scale);
+		arm1angle.render(scale);
+		plate3.render(scale);
+		middle.render(scale);
+	}
+
+	@Override
+	public void renderLast(float scale) {
+		glass.render(scale);
+	}
+	
+	private void setRotation(ModelRenderer model, float x, float y, float z) {
+		model.rotateAngleX = x;
+		model.rotateAngleY = y;
+		model.rotateAngleZ = z;
+	}
+
+}

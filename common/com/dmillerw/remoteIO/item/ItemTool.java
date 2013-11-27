@@ -1,17 +1,13 @@
 package com.dmillerw.remoteIO.item;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-import com.dmillerw.remoteIO.RemoteIO;
-import com.dmillerw.remoteIO.block.tile.TileEntityIO;
 import com.dmillerw.remoteIO.core.CreativeTabRIO;
 import com.dmillerw.remoteIO.core.helper.ChatHelper;
 import com.dmillerw.remoteIO.lib.ModInfo;
@@ -30,46 +26,46 @@ public class ItemTool extends Item {
 	}
 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float fx, float fy, float fz) {
-		if (!world.isRemote) {
-			int id = world.getBlockId(x, y, z);
-			int meta = world.getBlockMetadata(x, y, z);
-			
-			if (id == RemoteIO.instance.config.blockRIOID) {
-				TileEntityIO tile = (TileEntityIO) world.getBlockTileEntity(x, y, z);
-				
-				if (!player.isSneaking()) {
-					if (!hasCoordinates(stack)) {
-						ChatHelper.warn(player, "You must select a block to link with first");
-						return false;
-					} else {
-						int[] coords = getCoordinates(stack);
-						if (tile.setCoordinates(coords[0], coords[1], coords[2], coords[3])) {
-							ChatHelper.info(player, "Linked");
-						} else {
-							ChatHelper.warn(player, "Check to ensure the IO block is within range and as the appropriate upgrades");
-						}
-						clearCoordinates(stack);
-						return false;
-					}
-				} else {
-					if (tile.hasCoordinates()) {
-						tile.clearCoordinates();
-						ChatHelper.info(player, "Cleared selected Remote IO's coordinates");
-						return false;
-					}
-				}
-			} else {
-				if (Block.blocksList[id] != null && Block.blocksList[id].hasTileEntity(meta)) {
-					setCoordinates(stack, x, y, z, world.provider.dimensionId);
-					ChatHelper.info(player, "Begun linking process");
-					return false;
-				} else {
-					ChatHelper.warn(player, "You cannot link a Remote IO block to such a basic block");
-					return false;
-				}
-			}
-		}
-		
+//		if (!world.isRemote) {
+//			int id = world.getBlockId(x, y, z);
+//			int meta = world.getBlockMetadata(x, y, z);
+//			
+//			if (id == RemoteIO.instance.config.blockRIOID) {
+//				TileEntityIO tile = (TileEntityIO) world.getBlockTileEntity(x, y, z);
+//				
+//				if (!player.isSneaking()) {
+//					if (!hasCoordinates(stack)) {
+//						ChatHelper.warn(player, "You must select a block to link with first");
+//						return false;
+//					} else {
+//						int[] coords = getCoordinates(stack);
+//						if (tile.setCoordinates(coords[0], coords[1], coords[2], coords[3])) {
+//							ChatHelper.info(player, "Linked");
+//						} else {
+//							ChatHelper.warn(player, "Check to ensure the IO block is within range and as the appropriate upgrades");
+//						}
+//						clearCoordinates(stack);
+//						return false;
+//					}
+//				} else {
+//					if (tile.hasCoordinates()) {
+//						tile.clearCoordinates();
+//						ChatHelper.info(player, "Cleared selected Remote IO's coordinates");
+//						return false;
+//					}
+//				}
+//			} else {
+//				if (Block.blocksList[id] != null && Block.blocksList[id].hasTileEntity(meta)) {
+//					setCoordinates(stack, x, y, z, world.provider.dimensionId);
+//					ChatHelper.info(player, "Begun linking process");
+//					return false;
+//				} else {
+//					ChatHelper.warn(player, "You cannot link a Remote IO block to such a basic block");
+//					return false;
+//				}
+//			}
+//		}
+//		
 		return true;
 	}
 	

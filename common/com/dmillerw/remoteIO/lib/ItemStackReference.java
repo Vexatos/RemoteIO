@@ -30,12 +30,12 @@ public class ItemStackReference {
 	public static final ItemStack DYE_ORANGE = getDye(14);
 	public static final ItemStack DYE_WHITE = getDye(15);
 	
-	public static final ItemStack COMPONENT_CAMO = getStack(RemoteIO.instance.config.itemComponentID + 256, 0);
-	public static final ItemStack COMPONENT_LOCK = getStack(RemoteIO.instance.config.itemComponentID + 256, 1);
-	public static final ItemStack COMPONENT_IRONROD = getStack(RemoteIO.instance.config.itemComponentID + 256, 2);
-	public static final ItemStack COMPONENT_MONITOR = getStack(RemoteIO.instance.config.itemComponentID + 256, 3);
+	public static final ItemStack COMPONENT_CAMO = getStack(1, 0);
+	public static final ItemStack COMPONENT_LOCK = getStack(1, 1);
+	public static final ItemStack COMPONENT_IRONROD = getStack(1, 2);
+	public static final ItemStack COMPONENT_MONITOR = getStack(1, 3);
 	
-	public static final ItemStack BLOCK_IO = getStack(RemoteIO.instance.config.blockRIOID, 0);
+	public static final ItemStack BLOCK_IO = getStack(1, 0);
 	
 	private static ItemStack getDye(int meta) {
 		return getStack(Item.dyePowder.itemID, meta);

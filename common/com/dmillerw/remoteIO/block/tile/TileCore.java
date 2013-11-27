@@ -1,5 +1,6 @@
 package com.dmillerw.remoteIO.block.tile;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -9,7 +10,40 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class TileEntityCore extends TileEntity {
+public abstract class TileCore extends TileEntity {
+
+	@Override
+	public void updateEntity() {
+//		Side side = FMLCommonHandler.instance().getEffectiveSide();
+//		
+//		if (side.isClient()) {
+//			updateClient();
+//		} else if (side.isServer()) {
+//			updateServer();
+//		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void updateClient() {
+		
+	}
+	
+	@SideOnly(Side.SERVER)
+	public void updateServer() {
+		
+	}
+	
+	public boolean onBlockActivated(EntityPlayer player) {return false;}
+	
+	public void onBlockAdded(int side) {}
+	
+	public void onNeighborBlockUpdate() {}
+	
+	public void onBlockBreak() {}
+	
+	public abstract void writeCustomNBT(NBTTagCompound nbt);
+	
+	public abstract void readCustomNBT(NBTTagCompound nbt);
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
@@ -36,29 +70,5 @@ public abstract class TileEntityCore extends TileEntity {
 		worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 	}
 	
-	@Override
-	public void updateEntity() {
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		
-		if (side.isClient()) {
-			updateClient();
-		} else if (side.isServer()) {
-			updateServer();
-		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void updateClient() {
-		
-	}
-	
-	@SideOnly(Side.SERVER)
-	public void updateServer() {
-		
-	}
-	
-	public abstract void writeCustomNBT(NBTTagCompound nbt);
-	
-	public abstract void readCustomNBT(NBTTagCompound nbt);
 	
 }

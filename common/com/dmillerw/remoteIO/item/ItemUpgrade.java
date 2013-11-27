@@ -179,7 +179,8 @@ public class ItemUpgrade extends Item {
 		}
 		
 		public ItemStack toItemStack() {
-			return new ItemStack(RemoteIO.instance.config.itemUpgrade, 1, this.ordinal());
+			return null;
+//			return new ItemStack(RemoteIO.instance.config.itemUpgrade, 1, this.ordinal());
 		}
 		
 	}

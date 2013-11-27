@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -21,7 +22,7 @@ public class CreativeTabRIO extends CreativeTabs {
 	public int itemMeta = 0;
 
 	static {
-		tab = new CreativeTabRIO(ModInfo.NAME).setIcon(RemoteIO.instance.config.itemToolID + 256, 0);
+		tab = new CreativeTabRIO(ModInfo.NAME).setIcon(Block.stone.blockID, 0);
 	}
 
 	public CreativeTabRIO(String label) {
@@ -46,23 +47,4 @@ public class CreativeTabRIO extends CreativeTabs {
 		return new ItemStack(itemID, 1, itemMeta);
 	}
 
-	@Override
-	public void displayAllReleventItems(List list) {
-		super.displayAllReleventItems(list);
-
-		Collections.reverse(list);
-		Collections.sort(list, new Comparator<ItemStack>() {
-			@Override
-			public int compare(ItemStack arg0, ItemStack arg1) {
-				int upgrade = RemoteIO.instance.config.itemUpgradeID;
-				if (arg0.itemID != upgrade && arg1.itemID != upgrade) {
-					return 0;
-				} else {
-					return -1;
-				}
-			}
-		});
-		Collections.reverse(list);
-	}
-	
 }
