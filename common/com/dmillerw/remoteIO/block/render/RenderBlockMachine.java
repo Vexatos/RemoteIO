@@ -29,20 +29,18 @@ public class RenderBlockMachine extends BlockRenderer implements ISimpleBlockRen
 		if (metadata == 0) {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
-			block.setBlockBounds(0.1F, 0.1F, 0.1F, 0.9F, 0.9F, 0.9F);
+			renderer.setRenderBounds(0.1F, 0.1F, 0.1F, 0.9F, 0.9F, 0.9F);
 			drawFaces(renderer, block, Block.lavaStill.getBlockTextureFromSide(0), true);
-			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-			renderer.setRenderBoundsFromBlock(block);
+			renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			drawFaces(renderer, block, ((BlockMachine)block).iconBars, true);
 			GL11.glEnable(GL11.GL_ALPHA_TEST);
 			GL11.glPopMatrix();
 		} else if (metadata == 1) {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
-			block.setBlockBounds(0.1F, 0.1F, 0.1F, 0.9F, 0.9F, 0.9F);
+			renderer.setRenderBounds(0.1F, 0.1F, 0.1F, 0.9F, 0.9F, 0.9F);
 			drawFaces(renderer, block, Block.waterStill.getBlockTextureFromSide(0), true);
-			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-			renderer.setRenderBoundsFromBlock(block);
+			renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			drawFaces(renderer, block, ((BlockMachine)block).iconFrame, true);
 			drawFaces(renderer, block, ((BlockMachine)block).iconGlass, true);
 			GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -57,25 +55,28 @@ public class RenderBlockMachine extends BlockRenderer implements ISimpleBlockRen
 		if (meta == 0) {
 			TileHeater tile = (TileHeater) world.getBlockTileEntity(x, y, z);
 
-			block.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-			renderer.setRenderBoundsFromBlock(block);
+			renderer.setRenderBounds(0F, 0F, 0F, 1F, 1F, 1F);
 			Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
 			renderAllSides(world, x, y, z, block, renderer, ((BlockMachine)block).iconBars);
 			
 			for (int i = 1; i <= 20; i++) {
 				final float adjustConstant = 0.001F;
-				block.setBlockBounds(0F + (i * adjustConstant), 0F + (i * adjustConstant), 0F + (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant));
-				renderer.setRenderBoundsFromBlock(block);
+				renderer.setRenderBounds(0F + (i * adjustConstant), 0F + (i * adjustConstant), 0F + (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant));
 				Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
 				renderAllSides(world, x, y, z, block, renderer, ((BlockMachine)block).iconBarsDark);
 			}
 			
-			if (tile != null && tile.hasLava) {
-				block.setBlockBounds(0.02F, 0.02F, 0.02F, 0.98F, 0.98F, 0.98F);
-				renderer.setRenderBoundsFromBlock(block);
-				Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
-				renderer.renderStandardBlock(block, x, y, z);
-				renderer.clearOverrideBlockTexture();
+			if (tile != null) {
+				if (tile.hasLava) {
+					renderer.setRenderBounds(0.02F, 0.02F, 0.02F, 0.98F, 0.98F, 0.98F);
+					Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
+					renderer.renderStandardBlock(block, x, y, z);
+					renderer.clearOverrideBlockTexture();
+				} else {
+					renderer.setRenderBounds(0F, 0F, 0F, 1F, 1F, 1F);
+					Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
+					renderAllSidesInverted(world, x, y, z, block, renderer, ((BlockMachine)block).iconBars, true);
+				}
 			}
 			
 			return true;
@@ -86,24 +87,27 @@ public class RenderBlockMachine extends BlockRenderer implements ISimpleBlockRen
 			
 			for (int i = 1; i <= 40; i++) {
 				final float adjustConstant = 0.001F;
-				block.setBlockBounds(0F + (i * adjustConstant), 0F + (i * adjustConstant), 0F + (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant));
-				renderer.setRenderBoundsFromBlock(block);
+				renderer.setRenderBounds(0F + (i * adjustConstant), 0F + (i * adjustConstant), 0F + (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant), 1F - (i * adjustConstant));
 				Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
 				renderAllSides(world, x, y, z, block, renderer, ((BlockMachine)block).iconFrameDark);
 			}
 			
-			block.setBlockBounds(0.04F, 0.04F, 0.04F, 0.96F, 0.96F, 0.96F);
-			renderer.setRenderBoundsFromBlock(block);
+			renderer.setRenderBounds(0.04F, 0.04F, 0.04F, 0.96F, 0.96F, 0.96F);
 			Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
 			renderAllSides(world, x, y, z, block, renderer, ((BlockMachine)block).iconGlass);
 			
-			if (tile != null && tile.hasWater) {
-				setBrightness(world, x, y, z, block);
-				block.setBlockBounds(0.05F, 0.05F, 0.05F, 0.95F, 0.95F, 0.95F);
-				renderer.setRenderBoundsFromBlock(block);
-				Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
-				renderer.renderStandardBlock(block, x, y, z);
-				renderer.clearOverrideBlockTexture();
+			if (tile != null) {
+				if (tile.hasWater) {
+					setBrightness(world, x, y, z, block);
+					renderer.setRenderBounds(0.05F, 0.05F, 0.05F, 0.95F, 0.95F, 0.95F);
+					Tessellator.instance.setBrightness(setBrightness(world, x, y, z, block));
+					renderer.renderStandardBlock(block, x, y, z);
+					renderer.clearOverrideBlockTexture();
+				} else {
+					renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
+					renderAllSidesInverted(world, x, y, z, block, renderer, ((BlockMachine)block).iconFrame, true);
+					renderAllSidesInverted(world, x, y, z, block, renderer, ((BlockMachine)block).iconGlass, true);
+				}
 			}
 			
 			return true;
