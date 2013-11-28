@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 
+import com.dmillerw.remoteIO.block.item.ItemBlockEnder;
 import com.dmillerw.remoteIO.block.item.ItemBlockMachine;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -42,7 +43,7 @@ public class BlockHandler {
 		
 		if (blockEnderID != 0) {
 			blockEnder = new BlockEnder(blockEnderID).setUnlocalizedName("blockEnder");
-			GameRegistry.registerBlock(blockEnder, "blockEnder");
+			GameRegistry.registerBlock(blockEnder, ItemBlockEnder.class, "blockEnder");
 			for (int i=0; i<BlockEnder.INTERNAL_NAMES.length; i++) {
 				LanguageRegistry.addName(new ItemStack(blockEnder, 1, i), BlockEnder.NAMES[i]);
 			}

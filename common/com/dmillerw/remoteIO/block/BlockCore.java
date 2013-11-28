@@ -33,17 +33,6 @@ public abstract class BlockCore extends BlockContainer {
 	}
 	
 	@Override
-	public int onBlockPlaced(World world, int x, int y, int z, int side, float fx, float fy, float fz, int meta) {
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
-		
-		if (tile != null && tile instanceof TileCore) {
-			((TileCore)tile).onBlockAdded(side);
-		}
-		
-		return side;
-	}
-	
-	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		

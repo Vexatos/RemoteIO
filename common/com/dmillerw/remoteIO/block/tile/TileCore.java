@@ -14,21 +14,19 @@ public abstract class TileCore extends TileEntity {
 
 	@Override
 	public void updateEntity() {
-//		Side side = FMLCommonHandler.instance().getEffectiveSide();
-//		
-//		if (side.isClient()) {
-//			updateClient();
-//		} else if (side.isServer()) {
-//			updateServer();
-//		}
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		
+		if (side.isClient()) {
+			updateClient();
+		} else if (side.isServer()) {
+			updateServer();
+		}
 	}
 	
-	@SideOnly(Side.CLIENT)
 	public void updateClient() {
 		
 	}
 	
-	@SideOnly(Side.SERVER)
 	public void updateServer() {
 		
 	}
