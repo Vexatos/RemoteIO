@@ -1,4 +1,4 @@
-package com.dmillerw.remoteIO.core.helper;
+package com.dmillerw.remoteIO.core;
 
 import java.util.logging.Logger;
 

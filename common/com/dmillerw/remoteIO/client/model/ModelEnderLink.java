@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelEnderLink extends ModelTechne {
+	
 	ModelRenderer connector4;
 	ModelRenderer plate2;
 	ModelRenderer plate1;
@@ -111,53 +112,53 @@ public class ModelEnderLink extends ModelTechne {
 		transmitterAnt.mirror = true;
 		setRotation(transmitterAnt, -0.8552113F, -0.6108652F, 0F);
 		arm1 = new ModelRenderer(this, 18, 22);
-		arm1.addBox(0F, 0F, 0F, 4, 1, 2);
-		arm1.setRotationPoint(-2F, 19F, 7F);
+		arm1.addBox(0F, 1F, 1F, 4, 1, 2);
+		arm1.setRotationPoint(-2F, 18F, 6.5F);
 		arm1.setTextureSize(64, 32);
 		arm1.mirror = true;
 		setRotation(arm1, 0F, 0F, 0F);
 		arm2 = new ModelRenderer(this, 0, 18);
-		arm2.addBox(0F, 0F, 0F, 1, 4, 2);
-		arm2.setRotationPoint(3F, 14F, 7F);
+		arm2.addBox(1F, 0F, 1F, 1, 4, 2);
+		arm2.setRotationPoint(2F, 14F, 6.5F);
 		arm2.setTextureSize(64, 32);
 		arm2.mirror = true;
 		setRotation(arm2, 0F, 0F, 0F);
 		arm3 = new ModelRenderer(this, 18, 22);
-		arm3.addBox(0F, 0F, 0F, 4, 1, 2);
-		arm3.setRotationPoint(-2F, 12F, 7F);
+		arm3.addBox(0F, -2F, 1F, 4, 1, 2);
+		arm3.setRotationPoint(-2F, 14F, 6.5F);
 		arm3.setTextureSize(64, 32);
 		arm3.mirror = true;
 		setRotation(arm3, 0F, 0F, 0F);
 		arm4 = new ModelRenderer(this, 0, 18);
-		arm4.addBox(0F, 0F, 0F, 1, 4, 2);
-		arm4.setRotationPoint(-4F, 14F, 7F);
+		arm4.addBox(-2F, 0F, 1F, 1, 4, 2);
+		arm4.setRotationPoint(-2F, 14F, 6.5F);
 		arm4.setTextureSize(64, 32);
 		arm4.mirror = true;
 		setRotation(arm4, 0F, 0F, 0F);
 		arm4angle = new ModelRenderer(this, 0, 18);
-		arm4angle.addBox(0F, 0F, -2F, 1, 4, 2);
-		arm4angle.setRotationPoint(-4F, 14F, 7F);
+		arm4angle.addBox(-1F, 0F, 0F, 1, 4, 2);
+		arm4angle.setRotationPoint(-2F, 14F, 6.5F);
 		arm4angle.setTextureSize(64, 32);
 		arm4angle.mirror = true;
-		setRotation(arm4angle, 0F, -0.5235988F, 0F);
+		setRotation(arm4angle, 0F, -0.6457718F, 0F);
 		arm2angle = new ModelRenderer(this, 0, 18);
-		arm2angle.addBox(-1F, 0F, -2F, 1, 4, 2);
-		arm2angle.setRotationPoint(4F, 14F, 7F);
+		arm2angle.addBox(0F, 0F, 0F, 1, 4, 2);
+		arm2angle.setRotationPoint(2F, 14F, 6.5F);
 		arm2angle.setTextureSize(64, 32);
 		arm2angle.mirror = true;
-		setRotation(arm2angle, 0F, 0.5235988F, 0F);
+		setRotation(arm2angle, 0F, 0.6457718F, 0F);
 		arm3angle = new ModelRenderer(this, 18, 22);
-		arm3angle.addBox(0F, 0F, -2F, 4, 1, 2);
-		arm3angle.setRotationPoint(-2F, 12F, 7F);
+		arm3angle.addBox(0F, -1F, 0F, 4, 1, 2);
+		arm3angle.setRotationPoint(-2F, 14F, 6.5F);
 		arm3angle.setTextureSize(64, 32);
 		arm3angle.mirror = true;
-		setRotation(arm3angle, 0.5235988F, 0F, 0F);
+		setRotation(arm3angle, 0.6457718F, 0F, 0F);
 		arm1angle = new ModelRenderer(this, 18, 22);
-		arm1angle.addBox(0F, -1F, -2F, 4, 1, 2);
-		arm1angle.setRotationPoint(-2F, 20F, 7F);
+		arm1angle.addBox(0F, 0F, 0F, 4, 1, 2);
+		arm1angle.setRotationPoint(-2F, 18F, 6.5F);
 		arm1angle.setTextureSize(64, 32);
 		arm1angle.mirror = true;
-		setRotation(arm1angle, -0.5235988F, 0F, 0F);
+		setRotation(arm1angle, -0.6457718F, 0F, 0F);
 		plate3 = new ModelRenderer(this, 18, 8);
 		plate3.addBox(0F, 0F, 0F, 7, 7, 1);
 		plate3.setRotationPoint(-3.5F, 12.5F, 5.5F);
@@ -172,37 +173,32 @@ public class ModelEnderLink extends ModelTechne {
 		setRotation(middle, 0F, 0F, 0F);
 	}
 
-	@Override
-	public void render(float scale) {
-		connector4.render(scale);
-		plate2.render(scale);
-		plate1.render(scale);
-		connector3.render(scale);
-		connector1.render(scale);
-		connector2.render(scale);
-		body.render(scale);
-		bodyRing3.render(scale);
-		bodyRing2.render(scale);
-		bodyRing1.render(scale);
-		transmitter.render(scale);
-		transmitterAnt.render(scale);
-		arm1.render(scale);
-		arm2.render(scale);
-		arm3.render(scale);
-		arm4.render(scale);
-		arm4angle.render(scale);
-		arm2angle.render(scale);
-		arm3angle.render(scale);
-		arm1angle.render(scale);
-		plate3.render(scale);
-		middle.render(scale);
+	public void renderAll() {
+		connector4.render(AdvancedModel.SCALE);
+		plate2.render(AdvancedModel.SCALE);
+		plate1.render(AdvancedModel.SCALE);
+		connector3.render(AdvancedModel.SCALE);
+		connector1.render(AdvancedModel.SCALE);
+		connector2.render(AdvancedModel.SCALE);
+		glass.render(AdvancedModel.SCALE);
+		body.render(AdvancedModel.SCALE);
+		bodyRing3.render(AdvancedModel.SCALE);
+		bodyRing2.render(AdvancedModel.SCALE);
+		bodyRing1.render(AdvancedModel.SCALE);
+		transmitter.render(AdvancedModel.SCALE);
+		transmitterAnt.render(AdvancedModel.SCALE);
+		arm1.render(AdvancedModel.SCALE);
+		arm2.render(AdvancedModel.SCALE);
+		arm3.render(AdvancedModel.SCALE);
+		arm4.render(AdvancedModel.SCALE);
+		arm4angle.render(AdvancedModel.SCALE);
+		arm2angle.render(AdvancedModel.SCALE);
+		arm3angle.render(AdvancedModel.SCALE);
+		arm1angle.render(AdvancedModel.SCALE);
+		plate3.render(AdvancedModel.SCALE);
+		middle.render(AdvancedModel.SCALE);
 	}
 
-	@Override
-	public void renderLast(float scale) {
-		glass.render(scale);
-	}
-	
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;

@@ -36,7 +36,7 @@ public class ItemBlockEnder extends ItemBlock {
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 
 		if (tile != null && tile instanceof TileCore) {
-			((TileCore) tile).onBlockAdded(side);
+			((TileCore) tile).onBlockAdded(player.isSneaking() ? sideForge.getOpposite().ordinal() : side);
 		}
 
 		return true;

@@ -1,7 +1,11 @@
 package com.dmillerw.remoteIO.block;
 
+import net.minecraft.world.World;
+
 import com.dmillerw.remoteIO.block.tile.TileCore;
 import com.dmillerw.remoteIO.block.tile.TileEnderLink;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class BlockEnder extends BlockCore {
 

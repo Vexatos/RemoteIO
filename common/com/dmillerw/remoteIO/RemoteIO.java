@@ -1,9 +1,12 @@
 package com.dmillerw.remoteIO;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.dmillerw.remoteIO.block.BlockHandler;
 import com.dmillerw.remoteIO.core.proxy.ISidedProxy;
+import com.dmillerw.remoteIO.ender.storage.SharedRegistry;
 import com.dmillerw.remoteIO.lib.ModInfo;
 
 import cpw.mods.fml.common.Mod;
@@ -13,6 +16,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid=ModInfo.ID, name=ModInfo.NAME, version=ModInfo.VERSION, dependencies="after:EnderStorage")
@@ -33,6 +37,8 @@ public class RemoteIO {
 		BlockHandler.handleConfig(config);
 		BlockHandler.initializeBlocks();
 		
+		MinecraftForge.EVENT_BUS.register(SharedRegistry.instance());
+		
 		proxy.preInit(event);
 	}
 
@@ -44,6 +50,11 @@ public class RemoteIO {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
+	}
+	
+	@EventHandler
+	public void onServerStarting(FMLServerStartingEvent event) {
+		SharedRegistry.instance().onServerStarting(event);
 	}
 	
 }
