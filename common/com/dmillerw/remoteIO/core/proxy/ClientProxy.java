@@ -1,5 +1,7 @@
 package com.dmillerw.remoteIO.core.proxy;
 
+import net.minecraftforge.client.MinecraftForgeClient;
+
 import com.dmillerw.remoteIO.block.BlockHandler;
 import com.dmillerw.remoteIO.block.render.RenderBlockEnderLink;
 import com.dmillerw.remoteIO.block.render.RenderBlockMachine;
@@ -23,6 +25,7 @@ public class ClientProxy extends CommonProxy {
 		
 		if (BlockHandler.blockEnderID != 0) {
 			ClientRegistry.bindTileEntitySpecialRenderer(TileEnderLink.class, new RenderBlockEnderLink());
+			MinecraftForgeClient.registerItemRenderer(BlockHandler.blockEnderID, new RenderBlockEnderLink());
 		}
 	}
 
