@@ -1,6 +1,7 @@
 package com.dmillerw.remoteIO.ender.storage;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import cofh.api.energy.IEnergyStorage;
 
 public class SharedEnergyRF extends SharedStorage implements IEnergyStorage {
@@ -20,6 +21,11 @@ public class SharedEnergyRF extends SharedStorage implements IEnergyStorage {
 		return StorageType.ENERGY_RF;
 	}
 
+	@Override
+	public boolean push(TileEntity tile) {
+		return false;
+	}
+	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		nbt.setInteger("energy", this.currentEnergyStored);
@@ -58,5 +64,5 @@ public class SharedEnergyRF extends SharedStorage implements IEnergyStorage {
 	public int getMaxEnergyStored() {
 		return this.maxEnergyStored;
 	}
-	
+
 }

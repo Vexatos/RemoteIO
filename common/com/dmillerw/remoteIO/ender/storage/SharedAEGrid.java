@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import appeng.api.DimentionalCoord;
 import appeng.api.me.tiles.IGridTeleport;
 import appeng.api.me.tiles.IGridTileEntity;
@@ -29,6 +30,11 @@ public class SharedAEGrid extends SharedStorage {
 	}
 
 	@Override
+	public boolean push(TileEntity tile) {
+		return false;
+	}
+	
+	@Override
 	public void writeToNBT(NBTTagCompound nbt) {}
 
 	@Override
@@ -47,5 +53,5 @@ public class SharedAEGrid extends SharedStorage {
 		otherLinks.remove(gt);
 		return otherLinks.toArray(new IGridTileEntity[otherLinks.size()]);
 	}
-	
+
 }

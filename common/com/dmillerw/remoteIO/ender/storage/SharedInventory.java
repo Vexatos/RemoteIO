@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
 public class SharedInventory extends SharedStorage implements IInventory {
 
@@ -18,6 +19,11 @@ public class SharedInventory extends SharedStorage implements IInventory {
 	@Override
 	public StorageType getType() {
 		return StorageType.ITEM;
+	}
+	
+	@Override
+	public boolean push(TileEntity tile) {
+		return false;
 	}
 	
 	@Override

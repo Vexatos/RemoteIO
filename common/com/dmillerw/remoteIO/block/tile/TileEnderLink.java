@@ -25,6 +25,10 @@ import appeng.api.events.GridTileUnloadEvent;
 import appeng.api.me.tiles.IGridTeleport;
 import appeng.api.me.tiles.IGridTileEntity;
 import appeng.api.me.util.IGridInterface;
+import buildcraft.api.power.IPowerEmitter;
+import buildcraft.api.power.IPowerReceptor;
+import buildcraft.api.power.PowerHandler;
+import buildcraft.api.power.PowerHandler.PowerReceiver;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyStorage;
 
@@ -33,13 +37,14 @@ import com.dmillerw.remoteIO.block.render.EnderLinkRenderHelper.BlockDetail;
 import com.dmillerw.remoteIO.ender.IEnderLink;
 import com.dmillerw.remoteIO.ender.storage.SharedAEGrid;
 import com.dmillerw.remoteIO.ender.storage.SharedRegistry;
+import com.dmillerw.remoteIO.ender.storage.SharedStorage;
 import com.dmillerw.remoteIO.ender.storage.SharedStorage.StorageType;
 import com.dmillerw.remoteIO.item.ItemUpgrade.Upgrade;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEnderLink extends TileCore implements IEnderLink, IInventory, ISidedInventory, IFluidHandler, IEnergyHandler, IGridTileEntity, IGridTeleport {
+public class TileEnderLink extends TileCore implements IEnderLink, IInventory, ISidedInventory, IFluidHandler, IEnergyHandler, IPowerReceptor, IGridTileEntity, IGridTeleport {
 
 	public static final float ANGLE_MODIFIER = 90F;
 	public static final float ANGLE_MIN = 60 - ANGLE_MODIFIER;
@@ -80,6 +85,19 @@ public class TileEnderLink extends TileCore implements IEnderLink, IInventory, I
 				MinecraftForge.EVENT_BUS.post(new GridTileLoadEvent(this, this.worldObj, this.getLocation())); //TODO Removal events
 				getSharedAEGrid().register(this);
 				aeEventFired = true;
+			}
+			
+			if (this.worldObj.getWorldTime() % 32L == 0L) {
+				TileEntity tile = this.worldObj.getBlockTileEntity(xCoord + this.orientation.offsetX, yCoord + this.orientation.offsetY, zCoord + this.orientation.offsetZ);
+				
+				if (tile != null) {
+					for (SharedStorage storage : SharedRegistry.instance().getAllStorageOnFrequency(this)) {
+//						storage.extract(tile) Maybe
+						if (storage.push(tile)) {
+							SharedRegistry.instance().dirty(this, storage);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -173,6 +191,10 @@ public class TileEnderLink extends TileCore implements IEnderLink, IInventory, I
 	
 	public IEnergyStorage getSharedEnergyRF() {
 		return (IEnergyStorage) SharedRegistry.instance().getStorage(StorageType.ENERGY_RF, this);
+	}
+	
+	public IPowerReceptor getSharedEnergyBC() {
+		return (IPowerReceptor) SharedRegistry.instance().getStorage(StorageType.ENERGY_MJ, this);
 	}
 	
 	public SharedAEGrid getSharedAEGrid() {
@@ -296,6 +318,15 @@ public class TileEnderLink extends TileCore implements IEnderLink, IInventory, I
 	public int getMaxEnergyStored(ForgeDirection from) {
 		return from == this.orientation ? getSharedEnergyRF().getMaxEnergyStored() : 0;
 	}
+	
+	/* IPOWERRECEPTOR */
+	@Override
+	public PowerReceiver getPowerReceiver(ForgeDirection side) {
+		return side == this.orientation ? getSharedEnergyBC().getPowerReceiver(side) : null;
+	}
+
+	@Override
+	public void doWork(PowerHandler workProvider) {}
 	
 	/* IGRIDTILEENTITY */
 	@Override

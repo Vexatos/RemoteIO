@@ -1,6 +1,7 @@
 package com.dmillerw.remoteIO.ender.storage;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidEvent;
 import net.minecraftforge.fluids.FluidStack;
@@ -24,6 +25,11 @@ public class SharedTank extends SharedStorage implements IFluidTank {
 	@Override
 	public StorageType getType() {
 		return StorageType.FLUID;
+	}
+	
+	@Override
+	public boolean push(TileEntity tile) {
+		return false;
 	}
 	
 	@Override
