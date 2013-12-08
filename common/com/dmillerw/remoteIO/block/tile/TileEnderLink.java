@@ -25,6 +25,8 @@ import appeng.api.events.GridTileUnloadEvent;
 import appeng.api.me.tiles.IGridTeleport;
 import appeng.api.me.tiles.IGridTileEntity;
 import appeng.api.me.util.IGridInterface;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyStorage;
 
 import com.dmillerw.remoteIO.block.render.EnderLinkRenderHelper;
 import com.dmillerw.remoteIO.block.render.EnderLinkRenderHelper.BlockDetail;
@@ -37,7 +39,7 @@ import com.dmillerw.remoteIO.item.ItemUpgrade.Upgrade;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEnderLink extends TileCore implements IEnderLink, IInventory, ISidedInventory, IFluidHandler, IGridTileEntity, IGridTeleport {
+public class TileEnderLink extends TileCore implements IEnderLink, IInventory, ISidedInventory, IFluidHandler, IEnergyHandler, IGridTileEntity, IGridTeleport {
 
 	public static final float ANGLE_MODIFIER = 90F;
 	public static final float ANGLE_MIN = 60 - ANGLE_MODIFIER;
@@ -169,6 +171,10 @@ public class TileEnderLink extends TileCore implements IEnderLink, IInventory, I
 		return (IFluidTank) SharedRegistry.instance().getStorage(StorageType.FLUID, this);
 	}
 	
+	public IEnergyStorage getSharedEnergyRF() {
+		return (IEnergyStorage) SharedRegistry.instance().getStorage(StorageType.ENERGY_RF, this);
+	}
+	
 	public SharedAEGrid getSharedAEGrid() {
 		return (SharedAEGrid) SharedRegistry.instance().getStorage(StorageType.AE_GRID, this);
 	}
@@ -265,6 +271,32 @@ public class TileEnderLink extends TileCore implements IEnderLink, IInventory, I
 		return from == this.orientation ? new FluidTankInfo[] {getSharedTank().getInfo()} : new FluidTankInfo[0];
 	}
 
+	/* IENERGYHANDLER */
+	@Override
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
+		return from == this.orientation ? getSharedEnergyRF().receiveEnergy(maxReceive, simulate) : 0;
+	}
+
+	@Override
+	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+		return from == this.orientation ? getSharedEnergyRF().extractEnergy(maxExtract, simulate) : 0;
+	}
+
+	@Override
+	public boolean canInterface(ForgeDirection from) {
+		return from == this.orientation;
+	}
+
+	@Override
+	public int getEnergyStored(ForgeDirection from) {
+		return from == this.orientation ? getSharedEnergyRF().getEnergyStored() : 0;
+	}
+
+	@Override
+	public int getMaxEnergyStored(ForgeDirection from) {
+		return from == this.orientation ? getSharedEnergyRF().getMaxEnergyStored() : 0;
+	}
+	
 	/* IGRIDTILEENTITY */
 	@Override
 	public WorldCoord getLocation() {

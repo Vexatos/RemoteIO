@@ -29,6 +29,7 @@ public class SharedRegistry {
 	static {
 		typeToClassMapping.put(StorageType.ITEM, SharedInventory.class);
 		typeToClassMapping.put(StorageType.FLUID, SharedTank.class);
+		typeToClassMapping.put(StorageType.ENERGY_RF, SharedEnergyRF.class);
 		typeToClassMapping.put(StorageType.AE_GRID, SharedAEGrid.class);
 	}
 	
