@@ -29,6 +29,7 @@ public class SharedRegistry {
 	static {
 		typeToClassMapping.put(StorageType.ITEM, SharedInventory.class);
 		typeToClassMapping.put(StorageType.FLUID, SharedTank.class);
+		typeToClassMapping.put(StorageType.AE_GRID, SharedAEGrid.class);
 	}
 	
 	private static SharedRegistry INSTANCE = new SharedRegistry();
@@ -124,6 +125,7 @@ public class SharedRegistry {
 		} catch(Exception ex) {
 			IOLogger.logger.severe("Failed to save saved storage file!");
 			throw new RuntimeException(ex);
+			//TODO Fix error with files not being created
 		}
 	}
 	

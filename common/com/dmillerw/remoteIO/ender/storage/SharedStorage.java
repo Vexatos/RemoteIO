@@ -13,7 +13,7 @@ public abstract class SharedStorage {
 	public abstract void readFromNBT(NBTTagCompound nbt);
 	
 	public static enum StorageType {
-		ITEM, FLUID;
+		ITEM, FLUID, AE_GRID;
 	}
 	
 }
